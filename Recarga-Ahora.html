@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameTop · Recargas y monedas para tus juegos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="tickerTrack"></div>
+</div>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <button class="brand" data-nav="catalogo" aria-label="Ir al catálogo">
+      <span class="brand__mark">GT</span>
+      <span class="brand__name">GAME<em>TOP</em></span>
+    </button>
+
+    <div class="searchbar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="text" placeholder="Buscar Free Fire, Robux, Valorant Points…" autocomplete="off">
+    </div>
+
+    <nav class="topnav">
+      <button class="topnav__link" data-nav="catalogo">Catálogo</button>
+      <button class="topnav__link" data-nav="promos">Promos</button>
+      <button class="topnav__link" data-nav="pedidos">Mis pedidos</button>
+      <button class="topnav__link" data-nav="soporte">Soporte</button>
+      <button class="topnav__link topnav__link--admin" data-nav="admin">Admin</button>
+    </nav>
+
+    <div class="topbar__actions">
+      <button class="icon-btn" id="cartBtn" data-nav="carrito" aria-label="Ver carrito">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.3" fill="currentColor"/><circle cx="18" cy="21" r="1.3" fill="currentColor"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn account-btn" id="accountBtn" data-nav="cuenta" aria-label="Mi cuenta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.6-3.6 4.4-5.4 7.5-5.4s5.9 1.8 7.5 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span id="accountLabel">Ingresar</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <section class="view" id="view-catalogo" data-view="catalogo">
+    <div class="hero">
+      <div class="hero__text">
+        <span class="eyebrow">Top-up instantáneo · Todo Colombia</span>
+        <h1>Tu inventario de <span class="accent-text">monedas gamer</span>, siempre lleno.</h1>
+        <p>Diamantes, Robux, Pavos, COD Points y Valorant Points a un clic. Precios claros en pesos colombianos y entrega verificada.</p>
+        <div class="hero__stats">
+          <div><strong id="statGames">0</strong><span>juegos disponibles</span></div>
+          <div><strong id="statPackages">0</strong><span>paquetes activos</span></div>
+          <div><strong>+100%</strong><span>entrega verificada</span></div>
+        </div>
+      </div>
+      <div class="hero__panel">
+        <div class="hero__panel-head">
+          <span>Cotización rápida</span>
+          <span class="dot dot--live">EN VIVO</span>
+        </div>
+        <div id="heroQuote" class="hero__quote"></div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Videojuegos disponibles</h2>
+      <p id="searchStatus" class="muted"></p>
+    </div>
+    <div class="grid grid--games" id="gamesGrid"></div>
+    <p class="empty-state" id="gamesEmpty" hidden>No encontramos juegos que coincidan con tu búsqueda.</p>
+  </section>
+
+  <section class="view" id="view-juego" data-view="juego">
+    <button class="back-link" data-nav="catalogo">← Volver al catálogo</button>
+    <div class="game-detail" id="gameDetail"></div>
+  </section>
+
+  <section class="view" id="view-carrito" data-view="carrito">
+    <div class="section-head">
+      <h2>Tu carrito</h2>
+      <p class="muted">Revisa tus paquetes antes de continuar al pago.</p>
+    </div>
+    <div class="cart-layout">
+      <div class="cart-items" id="cartItems"></div>
+      <aside class="cart-summary">
+        <h3>Resumen</h3>
+        <div class="cart-summary__row"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+        <div class="cart-summary__row" id="cartDiscountRow" hidden><span>Descuento</span><span id="cartDiscount">-$0</span></div>
+        <div class="cart-summary__row cart-summary__row--total"><span>Total</span><span id="cartTotal">$0</span></div>
+        <form id="promoForm" class="pay-form" style="gap:8px;">
+          <label class="tiny">Código de promoción
+            <input type="text" id="promoInput" placeholder="Ej: BIENVENIDA10">
+          </label>
+          <button type="submit" class="btn btn--ghost btn--block btn--sm">Aplicar código</button>
+        </form>
+        <p class="form-error" id="promoError" hidden></p>
+        <button class="btn btn--primary btn--block" id="checkoutBtn">Continuar al pago</button>
+        <p class="tiny muted">Precios expresados en pesos colombianos (COP).</p>
+      </aside>
+    </div>
+    <p class="empty-state" id="cartEmpty" hidden>Tu carrito está vacío. Explora el catálogo para agregar recargas.</p>
+  </section>
+
+  <section class="view" id="view-pago" data-view="pago">
+    <button class="back-link" data-nav="carrito">← Volver al carrito</button>
+    <div class="section-head"><h2>Elige tu método de pago</h2></div>
+    <div class="pay-layout">
+      <div class="pay-methods" id="payMethods"></div>
+      <aside class="cart-summary">
+        <h3>Total a pagar</h3>
+        <div class="cart-summary__row cart-summary__row--total"><span>Total</span><span id="payTotal">$0</span></div>
+        <div id="payInstructions" class="pay-instructions"></div>
+        <form id="payForm" class="pay-form">
+          <label>Identificador / ID de jugador
+            <input type="text" id="payerGameId" placeholder="Ej: 123456789" required>
+          </label>
+          <label>Correo de contacto
+            <input type="email" id="payerEmail" placeholder="tucorreo@ejemplo.com" required>
+          </label>
+          <button type="submit" class="btn btn--primary btn--block">Pagar ahora</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <section class="view" id="view-confirmacion" data-view="confirmacion">
+    <div class="confirm-card" id="confirmCard"></div>
+  </section>
+
+  <section class="view" id="view-pedidos" data-view="pedidos">
+    <div class="section-head"><h2>Mis pedidos</h2><p class="muted">Consulta el estado y el historial de tus compras.</p></div>
+    <div class="orders-list" id="ordersList"></div>
+    <p class="empty-state" id="ordersEmpty" hidden>Todavía no tienes pedidos. Cuando compres, aparecerán aquí.</p>
+  </section>
+
+  <section class="view" id="view-promos" data-view="promos">
+    <div class="section-head"><h2>Promociones activas</h2><p class="muted">Aplícalas en el checkout usando su código.</p></div>
+    <div class="grid grid--promos" id="promosGrid"></div>
+  </section>
+
+  <section class="view" id="view-soporte" data-view="soporte">
+    <div class="section-head"><h2>Soporte GameTop</h2><p class="muted">Cuéntanos tu problema y te contactaremos.</p></div>
+    <form class="support-form" id="supportForm">
+      <label>Nombre
+        <input type="text" id="supportName" required>
+      </label>
+      <label>Correo de contacto
+        <input type="email" id="supportEmail" required>
+      </label>
+      <label>Número de pedido (opcional)
+        <input type="text" id="supportOrder" placeholder="Ej: GT-00123">
+      </label>
+      <label>Cuéntanos qué pasó
+        <textarea id="supportMessage" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="btn btn--primary">Enviar consulta</button>
+    </form>
+    <div class="support-confirm" id="supportConfirm" hidden></div>
+  </section>
+
+  <section class="view" id="view-cuenta" data-view="cuenta">
+    <div class="auth-wrap">
+      <div class="auth-tabs">
+        <button class="auth-tab is-active" data-auth-tab="login">Iniciar sesión</button>
+        <button class="auth-tab" data-auth-tab="registro">Crear cuenta</button>
+        <button class="auth-tab" data-auth-tab="recuperar">Recuperar clave</button>
+      </div>
+
+      <form class="auth-form" id="loginForm" data-auth-panel="login">
+        <label>Correo <input type="email" id="loginEmail" required></label>
+        <label>Contraseña <input type="password" id="loginPassword" required></label>
+        <p class="form-error" id="loginError" hidden></p>
+        <button type="submit" class="btn btn--primary btn--block">Ingresar</button>
+      </form>
+
+      <form class="auth-form" id="registerForm" data-auth-panel="registro" hidden>
+        <label>Nombre completo <input type="text" id="regName" required></label>
+        <label>Correo <input type="email" id="regEmail" required></label>
+        <label>Contraseña <input type="password" id="regPassword" minlength="4" required></label>
+        <p class="form-error" id="regError" hidden></p>
+        <button type="submit" class="btn btn--primary btn--block">Registrarme</button>
+      </form>
+
+      <form class="auth-form" id="recoverForm" data-auth-panel="recuperar" hidden>
+        <p class="muted tiny">Escribe tu correo registrado. Simularemos el envío de un enlace y te dejaremos definir una nueva contraseña.</p>
+        <label>Correo registrado <input type="email" id="recoverEmail" required></label>
+        <p class="form-error" id="recoverError" hidden></p>
+        <div class="recover-step2" id="recoverStep2" hidden>
+          <label>Nueva contraseña <input type="password" id="recoverNewPassword" minlength="4"></label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block" id="recoverSubmitBtn">Enviar enlace de recuperación</button>
+      </form>
+
+      <div class="auth-session" id="authSession" hidden>
+        <p>Sesión activa como <strong id="sessionName"></strong></p>
+        <button class="btn btn--ghost" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-admin" data-view="admin">
+    <div class="section-head"><h2>Panel administrador</h2><p class="muted">Agrega productos y gestiona el estado de los pedidos.</p></div>
+
+    <div class="admin-grid">
+      <div class="admin-card">
+        <h3>Agregar producto</h3>
+        <form id="adminProductForm" class="admin-form">
+          <label>Nombre del producto <input type="text" id="apName" required placeholder="Ej: 520 Diamantes"></label>
+          <label>Precio (COP) <input type="number" id="apPrice" min="1" required></label>
+          <label>Videojuego
+            <select id="apGame" required></select>
+          </label>
+          <label>Cantidad de moneda <input type="text" id="apAmount" placeholder="Ej: 520 diamantes" required></label>
+          <button type="submit" class="btn btn--primary btn--block">Guardar producto</button>
+        </form>
+        <p class="form-success" id="adminProductSuccess" hidden></p>
+      </div>
+
+      <div class="admin-card admin-card--wide">
+        <h3>Gestionar pedidos</h3>
+        <div class="admin-orders" id="adminOrders"></div>
+        <p class="empty-state" id="adminOrdersEmpty" hidden>No hay pedidos registrados todavía.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer class="site-footer">
+  <p>GameTop · Recargas y monedas virtuales para tus juegos favoritos. Proyecto académico.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
