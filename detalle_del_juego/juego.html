@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Juego | Gaming Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="producto.css">
+</head>
+<body>
+
+    
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a href="index.html" class="brand">
+                <div class="brand__mark">G</div>
+                <div class="brand__name">GAMING <em>STORE</em></div>
+            </a>
+
+            <nav class="topnav">
+                <a href="index.html" class="topnav__link">Inicio / Catálogo</a>
+                <a href="admin.html" class="topnav__link topnav__link--admin">Admin</a>
+            </nav>
+
+            <div class="topbar__actions">
+                <a href="index.html" class="icon-btn account-btn">
+                    🛒 Carrito
+                    <span id="cartBadge" class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="view is-active">
+  
+        <a href="index.html" class="back-link">← Volver al catálogo</a>
+
+        
+        <div id="productContainer" class="game-detail-layout">
+            <div class="empty-state">
+                <p>Cargando información del juego...</p>
+            </div>
+        </div>
+    </main>
+
+    
+    <div id="toast" class="toast">Producto añadido al carrito</div>
+
+    <footer class="site-footer">
+        <p>&copy; Gaming Store - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="producto.js"></script>
+</body>
+</html>

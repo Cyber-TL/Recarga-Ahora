@@ -1,0 +1,77 @@
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameTop · Mi perfil e historial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="historial_perfil.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">GT</span>
+      <span class="brand__name">GAME<em>TOP</em></span>
+    </a>
+    <nav class="topnav">
+      <a class="topnav__link" href="index.html">Catálogo</a>
+      <a class="topnav__link" href="index.html">Mis pedidos</a>
+      <a class="topnav__link" href="index.html">Soporte</a>
+    </nav>
+  </div>
+</header>
+
+<main class="perfil-main">
+
+  <section class="perfil-card" id="perfilCard">
+    <div class="perfil-avatar" id="perfilAvatar">?</div>
+    <div class="perfil-info">
+      <h1 id="perfilNombre">Invitado</h1>
+      <p class="muted" id="perfilCorreo">Inicia sesión para ver tu historial</p>
+    </div>
+    <button class="btn btn--ghost" id="logoutBtn" hidden>Cerrar sesión</button>
+  </section>
+
+  <p class="empty-state" id="sinSesion" hidden>
+    No has iniciado sesión. <a href="index.html" class="link-inline">Vuelve al inicio</a> para ingresar a tu cuenta.
+  </p>
++
+  <section class="perfil-stats" id="perfilStats" hidden>
+    <div class="stat-box">
+      <strong id="statTotalPedidos">0</strong>
+      <span>pedidos realizados</span>
+    </div>
+    <div class="stat-box">
+      <strong id="statTotalGastado">$0</strong>
+      <span>total gastado</span>
+    </div>
+    <div class="stat-box">
+      <strong id="statUltimoPedido">—</strong>
+      <span>último pedido</span>
+    </div>
+  </section>
+
+  <section class="historial-section" id="historialSection" hidden>
+    <div class="section-head">
+      <h2>Historial de pedidos</h2>
+      <p class="muted">Todas tus recargas, de la más reciente a la más antigua.</p>
+    </div>
+    <div class="orders-list" id="historialList"></div>
+    <p class="empty-state" id="historialVacio" hidden>Todavía no tienes pedidos registrados.</p>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer class="site-footer">
+  <p>GameTop · Recargas y monedas virtuales para tus juegos favoritos. Proyecto académico.</p>
+</footer>
+
+<script src="historial_perfil.js"></script>
+</body>
+</html>

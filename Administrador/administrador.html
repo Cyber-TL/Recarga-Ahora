@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Gaming Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a href="index.html" class="brand">
+                <div class="brand__mark">A</div>
+                <div class="brand__name">ADMIN <em>PANEL</em></div>
+            </a>
+
+            <nav class="topnav">
+                <a href="index.html" class="topnav__link">← Volver a la Tienda</a>
+            </nav>
+
+            <div class="topbar__actions">
+                <div class="dot dot--live">Conectado a la base local</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="view is-active">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Gestión Global</span>
+                <h2>Panel de Control</h2>
+            </div>
+            <p class="muted">Administra el catálogo de juegos y supervisa los pedidos recibidos.</p>
+        </div>
+
+        <div class="admin-grid">
+            
+            <section class="admin-card">
+                <h3>Agregar Nuevo Juego</h3>
+                <form id="addGameForm" class="admin-form">
+                    <label>
+                        Título del Juego
+                        <input type="text" id="gameTitle" placeholder="Ej. Cyberpunk 2077" required>
+                    </label>
+
+                    <label>
+                        Categoría / Género
+                        <select id="gameCategory" required>
+                            <option value="">Selecciona categoría...</option>
+                            <option value="Acción">Acción</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Estrategia">Estrategia</option>
+                            <option value="Deportes">Deportes</option>
+                            <option value="Aventura">Aventura</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Precio ($ USD)
+                        <input type="number" id="gamePrice" step="0.01" min="0" placeholder="59.99" required>
+                    </label>
+
+                    <label>
+                        URL de la Imagen / Portada
+                        <input type="url" id="gameImage" placeholder="https://ejemplo.com/portada.jpg" required>
+                    </label>
+
+                    <label>
+                        Descripción
+                        <textarea id="gameDescription" rows="3" placeholder="Resumen del juego..." required></textarea>
+                    </label>
+
+                    <button type="submit" class="btn btn--primary btn--block">
+                        Guardar Juego en Catálogo
+                    </button>
+                </form>
+            </section>
+
+            
+            <section class="admin-card admin-card--wide">
+                <h3>Juegos en Catálogo (<span id="totalGamesCount">0</span>)</h3>
+                <div id="adminGamesList" class="admin-orders">
+                    
+                </div>
+
+                <h3 style="margin-top: 35px;">Historial de Pedidos (<span id="totalOrdersCount">0</span>)</h3>
+                <div id="adminOrdersList" class="admin-orders">
+                    
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="toast" class="toast">Acción realizada con éxito</div>
+
+    <footer class="site-footer">
+        <p>&copy; Panel Administrativo - Sistema Sincronizado</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

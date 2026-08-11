@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte y Seguimiento | Gaming Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="soporte.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a href="index.html" class="brand">
+                <div class="brand__mark">G</div>
+                <div class="brand__name">GAMING <em>STORE</em></div>
+            </a>
+
+            <nav class="topnav">
+                <a href="index.html" class="topnav__link">Inicio / Catálogo</a>
+                <a href="support.html" class="topnav__link topnav__link--active">Soporte</a>
+                <a href="admin.html" class="topnav__link topnav__link--admin">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="support-container">
+        <div class="section-head text-center">
+            <span class="eyebrow">CENTRO DE AYUDA Y RASTREO</span>
+            <h2>¿En qué te podemos ayudar?</h2>
+            <p class="muted">Consulta el estado de tu compra o abre un ticket de soporte técnico</p>
+        </div>
+
+        <div class="tabs-nav">
+            <button class="tab-btn is-active" onclick="switchTab('tracking')">🔍 Rastrear Pedido</button>
+            <button class="tab-btn" onclick="switchTab('faq')">❓ Preguntas Frecuentes</button>
+            <button class="tab-btn" onclick="switchTab('ticket')">✉️ Enviar Ticket de Soporte</button>
+        </div>
+
+        <section id="tab-tracking" class="tab-content is-active">
+            <div class="search-card">
+                <h3>Consulta el Estado de tu Pedido</h3>
+                <form id="trackingForm" class="tracking-form">
+                    <div class="form-group">
+                        <label for="orderIdInput">Número de Orden o Email</label>
+                        <input type="text" id="orderIdInput" placeholder="Ej: ORD-98214 o tu@email.com" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Buscar Pedido</button>
+                </form>
+            </div>
+
+            <div id="trackingResult" class="tracking-result hidden">
+            </div>
+
+            <div class="recent-orders">
+                <h3>Tus Pedidos Recientes</h3>
+                <div id="recentOrdersList" class="orders-grid">
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-faq" class="tab-content">
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cómo y cuándo recibo mi clave digital (Key)?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        La entrega de la clave digital es instantánea tras la confirmación del pago. Te llegará a tu correo electrónico registrado y también podrás verla en la sección de seguimiento de esta página.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Aceptamos tarjetas de crédito/débito (Visa, Mastercard), PayPal, Binance Pay y transferencias locales según tu país.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Puedo solicitar un reembolso si la clave no funciona?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sí. Contamos con una garantía de activación de 48 horas. Si la clave presenta fallos, nuestro equipo de soporte verificará el caso y te asignará un nuevo código o realizará la devolución de tu dinero.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-ticket" class="tab-content">
+            <div class="ticket-card">
+                <h3>Crear Ticket de Soporte</h3>
+                <form id="ticketForm" class="support-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ticketName">Nombre completo</label>
+                            <input type="text" id="ticketName" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketEmail">Correo Electrónico</label>
+                            <input type="email" id="ticketEmail" placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticketCategory">Tipo de Problema</label>
+                        <select id="ticketCategory" required>
+                            <option value="key">Problema con la Clave / Key</option>
+                            <option value="payment">Error en el Pago</option>
+                            <option value="refund">Solicitud de Reembolso</option>
+                            <option value="other">Otra Consulta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticketMessage">Mensaje / Detalle del Problema</label>
+                        <textarea id="ticketMessage" rows="5" placeholder="Describe lo sucedido con el mayor detalle posible..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--block">Enviar Ticket</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast">Mensaje de notificación</div>
+
+    <footer class="site-footer">
+        <p>&copy; Gaming Store - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="soporte.js"></script>
+</body>
+</html>
