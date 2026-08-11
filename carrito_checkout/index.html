@@ -1,1 +1,77 @@
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameTop · Carrito y pago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="carrito_checkout.css">
+</head>
+<body>
 
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">GT</span>
+      <span class="brand__name">GAME<em>TOP</em></span>
+    </a>
+    <a class="back-link" href="index.html">← Volver a la tienda</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="view-carrito" class="checkout-view">
+    <div class="section-head">
+      <h1>Tu carrito</h1>
+      <p class="muted">Revisa tus paquetes antes de continuar al pago.</p>
+    </div>
+
+    <div class="layout">
+      <div class="items" id="cartItems"></div>
+
+      <aside class="summary-card">
+        <h2>Resumen</h2>
+        <div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div>
+        <div class="row" id="discountRow" hidden><span>Descuento</span><span id="discount">-$0</span></div>
+        <div class="row row--total"><span>Total</span><span id="total">$0</span></div>
+        <button class="btn btn--primary btn--block" id="goToPayBtn">Continuar al pago</button>
+      </aside>
+    </div>
+    <p class="empty-state" id="cartEmpty" hidden>Tu carrito está vacío. <a href="index.html">Vuelve al catálogo</a> para agregar recargas.</p>
+  </section>
+
+  <!-- Vista pago -->
+  <section id="view-pago" class="checkout-view" hidden>
+    <button class="back-link" id="backToCartBtn">← Volver al carrito</button>
+    <div class="section-head"><h1>Elige tu método de pago</h1></div>
+
+    <div class="layout">
+      <div class="items" id="payMethods"></div>
+
+      <aside class="summary-card">
+        <h2>Total a pagar</h2>
+        <div class="row row--total"><span>Total</span><span id="payTotal">$0</span></div>
+        <p class="method-note" id="methodNote"></p>
+        <form id="payForm">
+          <label>Identificador / ID de jugador
+            <input type="text" id="payerGameId" placeholder="Ej: 123456789" required>
+          </label>
+          <label>Correo de contacto
+            <input type="email" id="payerEmail" placeholder="tucorreo@ejemplo.com" required>
+          </label>
+          <button type="submit" class="btn btn--primary btn--block">Pagar ahora</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <section id="view-confirmacion" class="checkout-view" hidden>
+    <div class="confirm-card" id="confirmCard"></div>
+  </section>
+
+</main>
+
+<script src="carrito_checkout.js"></script>
+</body>
+</html>
