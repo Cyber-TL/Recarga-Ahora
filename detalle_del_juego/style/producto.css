@@ -1,0 +1,270 @@
+:root {
+    --bg: #080b12;
+    --bg-soft: #0d111b;
+    --card: #111722;
+    --primary: #7c5cff;
+    --primary-light: #9b83ff;
+    --secondary: #00e5a0;
+    --text: #f4f7fb;
+    --text-soft: #a9b2c3;
+    --muted: #727d91;
+    --border: rgba(255, 255, 255, 0.08);
+    --radius: 14px;
+    --radius-lg: 20px;
+    --shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    --transition: 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(124, 92, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0, 229, 160, 0.06), transparent 25%),
+        var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8, 11, 18, 0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar__inner {
+    width: min(1400px, 94%);
+    margin: auto;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.brand__mark {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), #4c38d8);
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+}
+
+.brand__name {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.brand__name em { color: var(--secondary); font-style: normal; }
+
+.topnav { display: flex; gap: 15px; }
+
+.topnav__link {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.topnav__link:hover { color: white; background: rgba(255,255,255,0.05); }
+
+.icon-btn {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 14px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.badge {
+    background: var(--primary);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+main {
+    width: min(1200px, 92%);
+    margin: 30px auto;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.back-link:hover { color: white; transform: translateX(-4px); }
+
+.game-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 35px;
+    box-shadow: var(--shadow);
+}
+
+.product-cover {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.eyebrow {
+    color: var(--secondary);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-title {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 38px;
+    margin: 8px 0 15px;
+}
+
+.product-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.product-description {
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, var(--primary), #6548e8);
+    color: white;
+}
+
+.btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(124, 92, 255, 0.35);
+}
+
+.btn--ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+}
+
+.btn--ghost:hover {
+    color: white;
+    border-color: var(--primary);
+}
+
+.product-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.muted { color: var(--muted); }
+
+.toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    padding: 14px 20px;
+    background: #151b27;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 850px) {
+    .game-detail-layout {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .product-cover {
+        height: 280px;
+    }
+}
