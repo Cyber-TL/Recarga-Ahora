@@ -1,0 +1,127 @@
+
+.perfil-main {
+    width: min(1000px, 94%);
+    margin: auto;
+    padding: 45px 0 70px;
+}
+
+.perfil-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 26px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+
+    margin-bottom: 25px;
+}
+
+.perfil-avatar {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, var(--primary), #4c38d8);
+
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+.perfil-info {
+    flex: 1;
+}
+
+.perfil-info h1 {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 22px;
+}
+
+.perfil-info p {
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.link-inline {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+.perfil-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    margin-bottom: 35px;
+}
+
+.stat-box {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.stat-box strong {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 22px;
+    color: white;
+}
+
+.stat-box span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.historial-item {
+    padding: 16px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.historial-item__meta p {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.historial-item__right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.status-pill {
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0a0e16;
+}
+
+@media (max-width: 700px) {
+    .perfil-stats {
+        grid-template-columns: 1fr;
+    }
+    .perfil-card {
+        flex-wrap: wrap;
+    }
+}
